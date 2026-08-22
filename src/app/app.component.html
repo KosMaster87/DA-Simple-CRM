@@ -1,0 +1,84 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
+    <div class="headline-wrapper" routerLink="/">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="whatshot"></mat-icon>
+      <h1 class="primeFont" class="headlineSidenav">Das simple CRM-Projekt</h1>
+    </div>
+
+    <mat-divider class="list-divider"></mat-divider>
+
+    <mat-list class="list-wrapper">
+      <div class="icon-wrapper" routerLink="/dashboard" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="dashboard"
+        ></mat-icon>
+        <mat-list-item class="primeFont">Dashboard</mat-list-item>
+      </div>
+
+      <div class="icon-wrapper" routerLink="/user" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="face"></mat-icon>
+        <mat-list-item class="primeFont list-item">Benutzer</mat-list-item>
+      </div>
+
+      <div class="icon-wrapper" routerLink="/mailbox" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="mail_outline"
+        ></mat-icon>
+        <mat-list-item class="primeFont">Postfach</mat-list-item>
+      </div>
+
+      <div class="icon-wrapper" routerLink="/feedback" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="feedback"></mat-icon>
+        <mat-list-item class="primeFont">Nutzerfeedback</mat-list-item>
+      </div>
+
+      <div class="icon-wrapper" routerLink="/statistics" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="equalizer"
+        ></mat-icon>
+        <mat-list-item class="primeFont">Statistiken</mat-list-item>
+      </div>
+
+      <div class="icon-wrapper" routerLink="/settings" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="settings"></mat-icon>
+        <mat-list-item class="primeFont">Einstellungen</mat-list-item>
+      </div>
+
+      <div class="icon-wrapper" routerLink="/help" routerLinkActive="active-icon-wrapper">
+        <mat-icon matPrefix>keyboard_arrow_right</mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="help_outline"
+        ></mat-icon>
+        <mat-list-item class="primeFont">Hilfe</mat-list-item>
+      </div>
+    </mat-list>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <mat-toolbar class="primeFont toolbar">
+      <mat-icon class="icon-menu" (click)="drawer.toggle()">menu</mat-icon>
+      <span class="primeFont">Simple CRM</span>
+      <!-- <nav class="navbar">
+     link...
+      </nav> -->
+    </mat-toolbar>
+
+    <section class="main-content">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</mat-drawer-container>

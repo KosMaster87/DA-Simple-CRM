@@ -1,0 +1,6 @@
+@mixin borderStyling($style) {
+  border: $style;
+  // border-color: $color;
+  // background-color: $bgColor;
+  // border-radius: $radius;
+}

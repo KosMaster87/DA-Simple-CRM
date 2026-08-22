@@ -1,0 +1,187 @@
+<button
+  class="add-btn"
+  mat-mini-fab
+  aria-label="Add newUser"
+  matTooltip="Add newUser"
+  (click)="openDialog()"
+>
+  <mat-icon>add</mat-icon>
+</button>
+
+<!-- ------------------------------------------------------------------- -->
+
+<div class="user-main-wrapper">
+  <div *ngIf="loading; else content">
+    <mat-spinner></mat-spinner>
+    <p>Daten werden geladen...</p>
+  </div>
+
+  <ng-template #content>
+    <!-- Benutzerliste -->
+    <div *ngIf="!selectedUserId">
+      <h2>Benutzerliste</h2>
+
+      <button class="logging-col-docRef" (click)="refreshUsers()" [disabled]="loading">
+        {{ loading ? 'Wird geladen...' : 'Neu laden' }}
+      </button>
+
+      <!-- ------------------------------------- -->
+      <!-- DAS IST MEINE USER-CARD -->
+      <!-- <mat-card
+        *ngFor="let user of users$ | async; trackBy: trackByUserId"
+        class="user-card"
+      >
+        <mat-card-title>{{ user.role || "Unbekannt" }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ user.firstName || "Vorname fehlt" }}
+          {{ user.lastName || "Nachname fehlt" }}</mat-card-subtitle
+        >
+        <mat-card-actions>
+          <button mat-button (click)="selectUser(user.id!)">
+            Details anzeigen
+          </button>
+        </mat-card-actions>
+      </mat-card> -->
+      <!-- ------------------------------------- -->
+    </div>
+
+    <!-- Benutzerdetails -->
+    <div *ngIf="selectedUserId && (selectedUser$ | async) as selectedUser">
+      <h2>Benutzerdetails</h2>
+
+      <button mat-button (click)="resetSelection()">Zurück zur Liste</button>
+      <!-- <button mat-button (click)="openEditDialog(selectedUser)">
+        Bearbeiten
+      </button> -->
+
+      <!-- <mat-card>
+        <mat-card-title>{{ selectedUser.role || "Unbekannt" }}</mat-card-title>
+        <mat-card-content>
+          <p>Vorname: {{ selectedUser.firstName }}</p>
+          <p>Nachname: {{ selectedUser.lastName }}</p>
+          <p>E-Mail: {{ selectedUser.email || "Keine E-Mail" }}</p>
+          <p>Telefon: {{ selectedUser.mobile || "Keine Telefonnummer" }}</p>
+          <p>
+            Adresse: {{ selectedUser.street || "Keine Straße" }}
+            {{ selectedUser.houseNumber || "" }}
+          </p>
+          <p>PLZ: {{ selectedUser.zipCode || "Keine PLZ" }}</p>
+          <p>Stadt: {{ selectedUser.town || "Keine Stadt" }}</p>
+          <p>Land: {{ selectedUser.country || "Kein Land" }}</p>
+          <p>
+            Geburtsdatum: {{ selectedUser.birthDate || "Kein Geburtsdatum" }}
+          </p>
+          <p>
+            Beschreibung: {{ selectedUser.description || "Keine Beschreibung" }}
+          </p>
+        </mat-card-content>
+      </mat-card> -->
+    </div>
+  </ng-template>
+</div>
+
+<mat-card class="junus-table-card" appearance="outlined">
+  <mat-card-content class="junus-card-content">
+    <table class="junus-table" *ngFor="let user of users$ | async">
+      <!-- <caption>
+        Benutzerliste
+      </caption> -->
+
+      <thead>
+        <tr class="thead-row">
+          <th>Rolle</th>
+          <th>Vorname</th>
+          <th>Nachname</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="tbody-row">
+          <td data-label="role">{{ user.role || 'Unbekannt' }}</td>
+          <td data-label="firstName">
+            {{ user.firstName || 'Vorname fehlt' }}
+          </td>
+          <td data-label="lastName">{{ user.lastName || 'Nachname fehlt' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+<!-- ------------------------------------------------------------------- -->
+<!-- @if (!loading) {
+<div class="user-list">
+  @if (firebaseService.users$ | async; as users) {
+  <ng-container>
+    @for (user of users; track $index) {
+
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{
+          user.role || "Angestellter oder Kunde usw."
+        }}</mat-card-title>
+
+        <mat-card-subtitle>{{
+          user.firstName || "Kein Vorname"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.lastName || "Kein Nachname"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.email || "Keine E-Mail"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.mobile || "Keine Telefonnummer"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.street || "Keine Straße"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.houseNumber || "Keine Hausnummer"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.zipCode || "Keine Postleitzahl"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{ user.town || "Keine E-Mail" }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{ user.country || "Kein Land" }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.someMoreSomething || "Keine weitere Information"
+        }}</mat-card-subtitle>
+
+        <mat-card-subtitle>{{
+          user.birthDate || "Kein Geburtsdatum"
+        }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{ user.description || "Keine Beschreibung vorhanden." }}</p>
+      </mat-card-content>
+
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set aria-label="Benutzerinformationen">
+          <mat-chip>{{ "Benutzer bearbeiten" }}</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+
+    }
+  </ng-container>
+
+  } @else if (error) {
+  <p>Fehler beim Laden der Daten: {{ error }}</p>
+  } @else {
+  <ng-template #loading>
+    <mat-spinner></mat-spinner>
+    <p>Daten werden geladen...</p>
+  </ng-template>
+  }
+</div>
+} -->

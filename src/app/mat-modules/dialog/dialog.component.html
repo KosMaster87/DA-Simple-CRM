@@ -1,0 +1,136 @@
+<div class="dialog-wrapper">
+  @if (loading) {
+    <mat-progress-bar class="dialog-progress-bar" mode="indeterminate"></mat-progress-bar>
+  }
+
+  <h2 mat-dialog-title>Hi {{ data.name }}</h2>
+
+  <mat-dialog-content>
+    <p style="margin-bottom: 1rem">Trage einen Partner oder einen Kunden ein.</p>
+  </mat-dialog-content>
+
+  <div class="input-wrapper">
+    <div class="role-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>Position</mat-label>
+        <input [(ngModel)]="newUser.role" [disabled]="loading" matInput placeholder="Konstantin" />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Ihr Vorname ist erforderlich.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="fullname-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input
+          [(ngModel)]="newUser.firstName"
+          [disabled]="loading"
+          matInput
+          placeholder="Konstantin"
+        />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Ihr Vorname ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input [(ngModel)]="newUser.lastName" [disabled]="loading" matInput placeholder="Aksenov" />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Ihr Nachname ist erforderlich.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="contact-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>eMail</mat-label>
+        <input
+          [(ngModel)]="newUser.email"
+          [disabled]="loading"
+          matInput
+          placeholder="Konstantin.Aksenov@dev2k.net"
+        />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Die E-Mail ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mobil</mat-label>
+        <input
+          [(ngModel)]="newUser.mobile"
+          [disabled]="loading"
+          matInput
+          placeholder="+595 994221200"
+        />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint class="hint-mobile">Die Telefonnummer ist erforderlich.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="adress-wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input [(ngModel)]="newUser.street" [disabled]="loading" matInput placeholder="Home-Str." />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Die Straße ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>House number</mat-label>
+        <input [(ngModel)]="newUser.houseNumber" [disabled]="loading" matInput placeholder="187" />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Die Hausnummer ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Zip code</mat-label>
+        <input [(ngModel)]="newUser.zipCode" [disabled]="loading" matInput placeholder="9370" />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Die Plz ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Town</mat-label>
+        <input [(ngModel)]="newUser.town" [disabled]="loading" matInput placeholder="Loma Plata" />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Die Stadt ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <input [(ngModel)]="newUser.country" [disabled]="loading" matInput placeholder="Paraguay" />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Das Land ist erforderlich.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Some more something</mat-label>
+        <input
+          [(ngModel)]="newUser.someMoreSomething"
+          [disabled]="loading"
+          matInput
+          placeholder="Any Place"
+        />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Zusatzfeld.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-field">
+      <mat-label>Choose a date</mat-label>
+      <input [(ngModel)]="birthDate" [disabled]="loading" matInput [matDatepicker]="picker" />
+      <!-- <input [(ngModel)]="user.birthDate" matInput [matDatepicker]="picker" /> -->
+      <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>No Thanks</button>
+    <button mat-button mat-dialog-close [disabled]="loading" (click)="addUser()">Ok</button>
+  </mat-dialog-actions>
+</div>

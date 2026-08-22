@@ -1,0 +1,122 @@
+@use './../app/shared/styles/use-frame/frame-main.scss' as frame;
+
+mat-icon {
+  cursor: pointer;
+  width: 1.3em;
+  // width: 2rem;
+  // outline: 1px solid red;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primeColor5);
+}
+
+.sidenav {
+  padding: 20px;
+  @include frame.borderStyling(unset, unset, unset);
+  background-color: var(--primeColor4);
+}
+.headline-wrapper {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.headlineSidenav {
+  font-size: 22px;
+  padding: 0;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  color: var(--primeColor1);
+}
+
+.list-divider {
+  margin-bottom: 0.5rem;
+}
+
+.list-wrapper {
+  width: 100%;
+  padding: 0;
+
+  ::ng-deep .mat-mdc-list-item-unscoped-content {
+    transition: font-size 0.3s ease;
+  }
+
+  ::ng-deep mat-list-item:hover .mat-mdc-list-item-unscoped-content {
+    color: black;
+    scale: 1.05;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+list-item {
+  padding: 0;
+  padding-left: 1rem;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  border-radius: 8px;
+  transition:
+    background-color 0.9s ease,
+    color 0.3s ease;
+
+  ::ng-deep mat-list-item:hover {
+    cursor: pointer;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: var(--primeColor1);
+    background-color: rgba($color: #000000, $alpha: 0.1);
+  }
+}
+
+.active-icon-wrapper {
+  background-color: var(--primeColor5) !important;
+  color: var(--primeColor2);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.sidenav-content {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+
+  .toolbar {
+    background-color: var(--primeColor4);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.navbar {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid goldenrod;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}

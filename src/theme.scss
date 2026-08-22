@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+@use '@angular/material/core/theming' as mat-core;
+
+// Definiere die Farben und das Thema
+$primary-color: mat.$blue-palette;
+$accent-color: mat.$green-palette;
+$warn-color: mat.$red-palette;
+
+$custom-theme: mat-core.define-light-theme(
+  (
+    color: (
+      primary: $primary-color,
+      accent: $accent-color,
+      warn: $warn-color,
+    ),
+    typography: mat-core.define-typography-config(),
+  )
+);
+
+// Mixin anwenden
+@include mat-core.all-component-themes($custom-theme);
+
+// ----------------------------------------------------
+
+// @use '@angular/material' as mat;
+
+// // Customize the entire app. Change :root to your selector if you want to scope the styles.
+// :root {
+//   @include mat.dialog-overrides((
+//     container-color: orange,
+//     subhead-color: red,
+//   ));
+// }

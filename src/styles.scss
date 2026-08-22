@@ -1,0 +1,16 @@
+@use './../public/assets/styles/comic.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primeColor1: rgb(184, 57, 45);
+  --primeColor2: rgb(248, 158, 49);
+  --primeColor3: rgb(236, 202, 91);
+  --primeColor4: rgb(113, 174, 128);
+  --primeColor5: rgb(113, 130, 128);
+}
